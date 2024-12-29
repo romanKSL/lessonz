@@ -20,7 +20,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/lessons/1"
+				"url": "http://localhost:8080/api/lessons/2"
 			},
 			"response": []
 		},
@@ -31,7 +31,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 3,\n    \"title\": \"Final\",\n    \"subject\": \"Python\",\n    \"startedOn\": \"2024-11-22T17:00:00\",\n    \"duration\": \"PT2H\"\n}",
+					"raw": "{\n    \"id\": 2,\n    \"title\": \"Static methods\",\n    \"subject\": \"Java\",\n    \"startedOn\": \"2024-12-29T17:04:25.56931\",\n    \"minutesDuration\": 90\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -49,14 +49,14 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 4,\n    \"title\": \"Final\",\n    \"subject\": \"Python\",\n    \"startedOn\": \"2024-11-22T17:00:00\",\n    \"duration\": \"PT2H\"\n}",
+					"raw": "{\n    \"id\": 2,\n    \"title\": \"Static methods\",\n    \"subject\": \"Java\",\n    \"startedOn\": \"2024-12-29T17:04:25.56931\",\n    \"minutesDuration\": 80\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/lessons/3"
+				"url": "http://localhost:8080/api/lessons/2"
 			},
 			"response": []
 		},

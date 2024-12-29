@@ -2,7 +2,6 @@ package com.kyslyi.lessonz.lesson;
 
 import jakarta.validation.constraints.NotEmpty;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 
 public record Lesson(
@@ -11,7 +10,7 @@ public record Lesson(
         String title,
         String subject,
         LocalDateTime startedOn,
-        Duration duration
+        int minutesDuration
 ) {
 
     public Lesson {

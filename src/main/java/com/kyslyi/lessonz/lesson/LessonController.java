@@ -22,6 +22,7 @@ public class LessonController {
         return lessonRepository.findAll();
     }
 
+
     @GetMapping("/{id}")
     Lesson findById(@PathVariable Integer id) {
         Optional<Lesson> lesson = lessonRepository.findById(id);

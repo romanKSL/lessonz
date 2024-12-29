@@ -1,0 +1,74 @@
+{
+  "lessons": [
+    {
+      "id": 1,
+      "title": "Main method",
+      "subject": "Java",
+      "startedOn": "2024-12-29T09:30:00",
+      "minutesDuration": 60
+    },
+    {
+      "id": 2,
+      "title": "Basic Chemistry Concepts",
+      "subject": "Chemistry",
+      "startedOn": "2024-12-28T09:30:00",
+      "minutesDuration": 45
+    },
+    {
+      "id": 3,
+      "title": "World War II Overview",
+      "subject": "History",
+      "startedOn": "2024-12-27T14:00:00",
+      "minutesDuration": 75
+    },
+    {
+      "id": 4,
+      "title": "Shakespeare's Works",
+      "subject": "English",
+      "startedOn": "2024-12-26T11:00:00",
+      "minutesDuration": 90
+    },
+    {
+      "id": 5,
+      "title": "Fundamentals of Geography",
+      "subject": "Geography",
+      "startedOn": "2024-12-25T08:45:00",
+      "minutesDuration": 60
+    },
+    {
+      "id": 6,
+      "title": "Newton's Laws of Motion",
+      "subject": "Physics",
+      "startedOn": "2024-12-24T13:00:00",
+      "minutes_duration": 50
+    },
+    {
+      "id": 7,
+      "title": "Organic Chemistry Basics",
+      "subject": "Chemistry",
+      "startedOn": "2024-12-23T15:30:00",
+      "minutesDuration": 55
+    },
+    {
+      "id": 8,
+      "title": "The Human Body",
+      "subject": "Biology",
+      "startedOn": "2024-12-22T16:00:00",
+      "minutesDuration": 70
+    },
+    {
+      "id": 9,
+      "title": "Ancient Civilizations",
+      "subject": "History",
+      "startedOn": "2024-12-21T12:00:00",
+      "minutesDuration": 80
+    },
+    {
+      "id": 10,
+      "title": "Global Warming and Climate Change",
+      "subject": "Geography",
+      "startedOn": "2024-12-20T17:00:00",
+      "minutesDuration": 65
+    }
+  ]
+}

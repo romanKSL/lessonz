@@ -1,55 +1,76 @@
 package com.kyslyi.lessonz.lesson;
 
 import jakarta.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.Assert;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 public class LessonRepository {
 
-    private List<Lesson> lessons = new ArrayList<>();
+    private static final Logger log = LoggerFactory.getLogger(LessonRepository.class);
+    private final JdbcClient jdbcClient;
 
-    List<Lesson> findAll() {
-        return lessons;
+    public LessonRepository(JdbcClient jdbcClient) {
+        this.jdbcClient = jdbcClient;
     }
 
-    Optional<Lesson> findById(Integer id) {
-        return lessons.stream()
-                .filter(lesson -> lesson.id().equals(id))
-                .findFirst();
+    public List<Lesson> findAll() {
+        return jdbcClient.sql("SELECT * FROM lesson")
+                .query(Lesson.class)
+                .list();
     }
 
-    void create(Lesson lesson) {
-        lessons.add(lesson);
+    public Optional<Lesson> findById(Integer id) {
+        return jdbcClient.sql("SELECT * FROM lesson WHERE id = :id")
+                .param("id", id)
+                .query(Lesson.class)
+                .optional();
     }
 
-    void update(Lesson lesson, Integer id) {
-        Optional<Lesson> existingLesson = findById(id);
-        if(existingLesson.isPresent()) {
-            lessons.set(lessons.indexOf(existingLesson.get()), lesson);
-        }
+    public void create(Lesson lesson) {
+        var updated = jdbcClient.sql("INSERT INTO Lesson(id, title, subject, started_on, minutes_duration) VALUES (?, ?, ?, ?, ?)")
+                .params(List.of(lesson.id(), lesson.title(), lesson.subject(), lesson.startedOn(), lesson.minutesDuration()))
+                .update();
+        Assert.state(updated == 1, "Failed to create lesson " + lesson.title());
     }
 
-    void delete(Integer id) {
-        lessons.removeIf(lesson -> lesson.id().equals(id));
+    public void update(Lesson lesson, Integer id) {
+        var updated = jdbcClient.sql("UPDATE lesson SET title = ?, subject = ?, started_on = ?, minutes_duration = ? WHERE id = ?")
+                .params(List.of(lesson.title(), lesson.subject(), lesson.startedOn(), lesson.minutesDuration(), id))
+                .update();
+        Assert.state(updated == 1, "Failed to update lesson " + lesson.title());
     }
 
-    @PostConstruct
-    private void init() {
-        lessons.add(new Lesson(1,
-                "Main method",
-                "Java",
-                LocalDateTime.of(2024, 12, 22, 15, 0),
-                Duration.ofHours(1)));
-        lessons.add(new Lesson(2,
-                "Constructors",
-                "Java",
-                LocalDateTime.of(2024, 12, 24, 16, 0),
-                Duration.ofHours(2)));
+    public void delete(Integer id) {
+        var updated = jdbcClient.sql("DELETE FROM lesson WHERE id = :id")
+                .param("id", id)
+                .update();
+        Assert.state(updated == 1, "Failed to delete lesson " + id);
+    }
+
+    public int count() {
+        return jdbcClient.sql("SELECT * FROM lesson")
+                .query().listOfRows().size();
+    }
+
+    public void saveAll(List<Lesson> lessons) {
+        lessons.stream().forEach(this::create);
+    }
+
+    public List<Lesson> findLessonsBySubject(String subject) {
+        return jdbcClient.sql("SELECT * FROM lesson WHERE subject = :subject")
+                .param("subject", subject)
+                .query(Lesson.class)
+                .list();
     }
 }
