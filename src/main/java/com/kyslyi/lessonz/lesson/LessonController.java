@@ -36,18 +36,23 @@ public class LessonController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     void create(@Valid @RequestBody Lesson lesson) {
-        lessonRepository.create(lesson);
+        lessonRepository.save(lesson);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
     void update(@Valid @RequestBody Lesson lesson, @PathVariable Integer id) {
-        lessonRepository.update(lesson, id);
+        lessonRepository.save(lesson);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     void delete(@PathVariable Integer id) {
-        lessonRepository.delete(id);
+        lessonRepository.delete(lessonRepository.findById(id).get());
+    }
+
+    @GetMapping("/duration/{minutesDuration}")
+    List<Lesson> findByMinutesDuration(@PathVariable Integer minutesDuration) {
+        return lessonRepository.findAllByMinutesDuration(minutesDuration);
     }
 }

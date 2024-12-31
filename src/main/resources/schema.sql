@@ -4,5 +4,6 @@ CREATE TABLE IF NOT EXISTS Lesson (
    subject varchar(250) NOT NULL,
    started_on timestamp NOT NULL,
    minutes_duration INT NOT NULL,
+   version INT,
    PRIMARY KEY (id)
 );

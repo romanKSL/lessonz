@@ -14,10 +14,10 @@ import java.io.InputStream;
 public class LessonJsonDataLoader implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(LessonJsonDataLoader.class);
-    private final LessonRepository lessonRepository;
+    private final JdbcClientLessonRepository lessonRepository;
     private final ObjectMapper objectMapper;
 
-    public LessonJsonDataLoader(LessonRepository lessonRepository, ObjectMapper objectMapper) {
+    public LessonJsonDataLoader(JdbcClientLessonRepository lessonRepository, ObjectMapper objectMapper) {
         this.lessonRepository = lessonRepository;
         this.objectMapper = objectMapper;
     }
